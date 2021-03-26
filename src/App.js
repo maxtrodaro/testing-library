@@ -2,7 +2,9 @@ import React from "react";
 import useKonamiCode from "./useKonamiCode";
 
 function App() {
-  const { sequence, rightSequence } = useKonamiCode();
+  const callback = () => console.log("Boaaa mlk!");
+  const newSequence = ["w", "j"];
+  const { sequence, rightSequence } = useKonamiCode(newSequence, callback);
 
   return (
     <div>
