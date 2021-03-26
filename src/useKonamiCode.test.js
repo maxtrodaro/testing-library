@@ -35,4 +35,27 @@ describe("useKonamiCode", () => {
 
     expect(result.current.rightSequence).toBe(true);
   });
+
+  it("should reset false when user types a right sequence", () => {
+    const { result } = renderHook(() => useKonamiCode());
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent("keydown", { key: "k" }));
+    });
+
+    expect(result.current.rightSequence).toBe(false);
+  });
+
+  it("should allow different sequence and return true if user types this sequence", () => {
+    const newSequence = ["w", "j"];
+    const { result } = renderHook(() => useKonamiCode(newSequence));
+
+    newSequence.forEach((key) => {
+      act(() => {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      });
+    });
+
+    expect(result.current.rightSequence).toBe(true);
+  });
 });
