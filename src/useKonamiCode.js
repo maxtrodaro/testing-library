@@ -13,7 +13,10 @@ export const konamiSequence = [
   "a",
 ];
 
-export default function useKonamiCode(codeSequence = konamiSequence) {
+export default function useKonamiCode(
+  codeSequence = konamiSequence,
+  callback = () => {}
+) {
   const [sequence, setSequence] = useState([]);
   const [rightSequence, setRightSequence] = useState(false);
 
@@ -28,6 +31,7 @@ export default function useKonamiCode(codeSequence = konamiSequence) {
 
     if (sequence.toString() === codeSequence.toString()) {
       setRightSequence(true);
+      callback();
     }
   }, [sequence]);
 
